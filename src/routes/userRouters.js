@@ -1,16 +1,15 @@
+import express from 'express';
 import createResourceController from '../controllers/resourceController.js';
 import { users } from '../repository/index.js';
 import asyncRouter from './asyncRouter.js';
-import express from 'express'
 
-
-const controller = createController(users)
 const router = express.Router();
+const controller = createResourceController(users, { required: ['name', 'email'] });
 
 router.get('/', asyncRouter(controller.list));
-router.get('/:id',  asyncRouter(controller.get));
+router.get('/:id', asyncRouter(controller.get));
+router.post('/', asyncRouter(controller.create));
 router.patch('/:id', asyncRouter(controller.update));
 router.delete('/:id', asyncRouter(controller.remove));
-//Vai lidar com todas as rotas desse controlador ; do domínio do usuário.
 
 export default router;
