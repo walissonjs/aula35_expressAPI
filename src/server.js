@@ -5,7 +5,7 @@ import { verificarConexao } from "./infrastructure/mysql.js";
 verificarConexao()
 // .listen serve para verificar se a conexão está realmente funcionando
 
-    .then(() => app.listen(port, () => console.log(`GT Store API disponível em: https://localhost:${port}`)))
+    .then(() => app.listen(port, '0.0.0.0', () => console.log(`GT Store API disponível em: http://localhost:${port}`)))
 
 // Informar se houver erro e identificar qual erro
     .catch((erro) => {
